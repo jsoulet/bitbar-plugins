@@ -45,6 +45,10 @@ function generateBitbar(repos) {
 			{
 				text: ':sleeping:',
 				dropdown: false
+			},
+			bitbar.sep,
+			{
+				text: 'No PR to check'
 			}
 		])
 	}
