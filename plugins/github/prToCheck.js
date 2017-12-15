@@ -25,11 +25,8 @@ function generateBitbar(repos) {
 			}
 		];
 	}
-	const prNumber = orderBy(repos.reduce((result, repo) => {
-		return result + repo.pr.length;
-	}, 0), (repo) => repo.pr.length);
 
-	const bitmapRenderedRepos = repos.map((repo) => {
+	const bitmapRenderedRepos = orderBy(repos.map((repo) => {
 		
 		return {
 			text: '(' + repo.pr.length + ') ' + repo.name,
@@ -40,7 +37,7 @@ function generateBitbar(repos) {
 				}
 			})
 		}
-	});
+	}), (repo) => repo.pr.length);
 
 	return [
 		{
