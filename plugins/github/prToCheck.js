@@ -1,4 +1,5 @@
 const some = require('lodash/some');
+const orderBy = require('lodash/orderBy');
 const {sep} = require('bitbar');
 
 const {
@@ -24,9 +25,9 @@ function generateBitbar(repos) {
 			}
 		];
 	}
-	const prNumber = repos.reduce((result, repo) => {
+	const prNumber = orderBy(repos.reduce((result, repo) => {
 		return result + repo.pr.length;
-	}, 0);
+	}, 0), (repo) => repo.pr.length);
 
 	const bitmapRenderedRepos = repos.map((repo) => {
 		
