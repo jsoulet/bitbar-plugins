@@ -25,19 +25,16 @@ function generateBitbar(repos) {
 			}
 		];
 	}
-
-	const bitmapRenderedRepos = orderBy(repos.map((repo) => {
-		
-		return {
-			text: '(' + repo.pr.length + ') ' + repo.name,
-			submenu: repo.pr.map((pr) => {
-				return {
-					text: pr.title,
-					href: pr.html_url
-				}
-			})
-		}
-	}), (repo) => repo.pr.length);
+	const prNumber = repos.reduce((result, repo) => result + repo.pr.length, 0);
+	const bitmapRenderedRepos = orderBy(repos, (repo) => repo.pr.length, ['desc']).map((repo) => ({
+		text: '(' + repo.pr.length + ') ' + repo.name,
+		submenu: repo.pr.map((pr) => {
+			return {
+				text: pr.title,
+				href: pr.html_url
+			}
+		})
+	}));
 
 	return [
 		{

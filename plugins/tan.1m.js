@@ -37,7 +37,7 @@ async function getTramTo(originCode, destination) {
 }
 
 const main = async () => {
-    if(d.getHours() < 17 || d.getMinutes() < 45) {
+    if(!((d.getHours() >= 17 && d.getMinutes() >= 45)|| d.getHours() >= 18)) {
         return bitbar([]);
     }
 
